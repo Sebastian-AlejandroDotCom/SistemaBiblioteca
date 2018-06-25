@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: #head}"></head>
+
+<body>
+
+<!-- Page Body -->
+<section id="container" class="">
+
+    <header th:replace="~{layout :: #header}"></header>
+
+    <aside th:replace="~{layout :: #sidebar}"></aside>
+
+    <!-- Content -->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header">Error Page</h3>
+
+                    Failed URL: <span th:text="${url}"></span>
+                    <br>
+                    Exception:  <span th:text="${exception.message}"></span>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <footer th:replace="~{layout :: #footer}"></footer>
+</section>
+
+<!-- Javascripts -->
+<div th:replace="~{layout :: #scripts}"></div>
+
+
+</body>
+
+</html>

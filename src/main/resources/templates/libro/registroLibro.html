@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: #head}"></head>
+
+<body>
+
+<!-- Page Body -->
+<section id="container" class="">
+
+    <header th:replace="~{layout :: #header}"></header>
+
+    <aside th:replace="~{layout :: #sidebar}"></aside>
+
+    <!-- Content -->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header"><i class="fas fa-book"></i> Registrar Nuevo Libro</h3>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 offset-lg-3">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Datos Libro
+                            </header>
+                            <div class="panel-body">
+                                <form th:action="@{/libros/registrar}" th:object="${libro}" method="post">
+                                    <div class="form-group">
+                                        <label>ISBN</label>
+                                        <input class="form-control" th:field="*{isbn}" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Título</label>
+                                        <input class="form-control" th:field="*{titulo}" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Páginas</label>
+                                        <input class="form-control" th:field="*{paginas}" type="number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Precio</label>
+                                        <input class="form-control" th:field="*{precio}" type="number">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Año</label>
+                                        <input class="form-control" th:field="*{anno}" type="date">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Publicación</label>
+                                        <input class="form-control" th:field="*{publicacion}" type="date">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Editorial</label>
+                                        <select class="form-control" th:field="*{editorial}">
+                                            <option th:value="null" th:text="'No especificado'"></option>
+                                            <option th:each="editorial : ${editoriales}" th:value="${editorial.getIdEditorial()}" th:text="${editorial.getNombreEditorial()}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" id="registrarLibro">Registrar</button>
+                                </form>
+
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </section>
+
+    <footer th:replace="~{layout :: #footer}"></footer>
+</section>
+
+<!-- Javascripts -->
+<div th:replace="~{layout :: #scripts}"></div>
+
+
+</body>
+
+</html>
