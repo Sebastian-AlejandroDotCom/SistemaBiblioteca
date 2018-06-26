@@ -5,6 +5,8 @@ import com.biblioteca.dto.Autor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AutorService {
 
@@ -15,8 +17,8 @@ public class AutorService {
         return this.autorDAO.findAll();
     }
 
-    public Autor buscarPorId(Integer id){
-        return this.autorDAO.findById(id).get();
+    public Optional<Autor> buscarPorId(Integer id){
+        return this.autorDAO.findById(id);
     }
 
     public void elminarPorId(Integer id){

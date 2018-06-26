@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.NoSuchElementException;
 
 @Controller
 public class AutorController {
@@ -19,17 +20,22 @@ public class AutorController {
     @Autowired
     private AutorService autorService;
 
-    @ExceptionHandler({ ExceptionService.class})
     @GetMapping("/autores")
-    public String showAuthors(@RequestParam( name = "searchIdAutor", required = false, defaultValue = "")String idAutor, Model model){
+    public String showAuthors(@RequestParam( name = "searchIdAutor", required = false, defaultValue = "")String idAutor, Model model) throws NoSuchElementException{
 
         if(idAutor.isEmpty()){
             model.addAttribute("autores", this.autorService.mostrarTodos());
+            return "/autor/autores";
         }else {
-            model.addAttribute("autores", this.autorService.buscarPorId(Integer.parseInt(idAutor)));
-        }
 
-        return "/autor/autores";
+            try {
+                model.addAttribute("autores", this.autorService.buscarPorId(Integer.parseInt(idAutor)).get());
+                return "/autor/autores";
+            }catch(NoSuchElementException e){
+                model.addAttribute("msj", "Id de Usuario no Encontrado (" + e.getMessage() + ")");
+                return "error";
+            }
+        }
     }
 
     @GetMapping("/autores/eliminar")
