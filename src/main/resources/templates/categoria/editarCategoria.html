@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{layout :: #head}"></head>
+
+<body>
+
+<!-- Page Body -->
+<section id="container" class="">
+
+    <header th:replace="~{layout :: #header}"></header>
+
+    <aside th:replace="~{layout :: #sidebar}"></aside>
+
+    <!-- Content -->
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="page-header" th:text="'Editar Categoría ' + ${categoria.getNombreCategoria()}"><i class="fas fa-book"></i></h3>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-6 offset-lg-3">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Datos Categoría
+                            </header>
+                            <div class="panel-body">
+                                <form th:action="@{/categorias/editar}" th:object="${categoria}" method="post">
+                                    <input class="form-control" th:field="*{idCategoria}" type="hidden">
+                                    <div class="form-group">
+                                        <label>Nombre Categoría</label>
+                                        <input class="form-control" th:field="*{nombreCategoria}" type="text">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" id="actualizarCategoria">Actualizar</button>
+                                </form>
+
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </section>
+
+    <footer th:replace="~{layout :: #footer}"></footer>
+</section>
+
+<!-- Javascripts -->
+<div th:replace="~{layout :: #scripts}"></div>
+
+
+</body>
+
+</html>
