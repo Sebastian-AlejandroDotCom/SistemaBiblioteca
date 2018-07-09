@@ -67,17 +67,7 @@
                                     <td th:text="${libro.getPrecio()}"></td>
                                     <td th:text="${libro.getAnno()}"></td>
                                     <td th:text="${libro.getPublicacion()}"></td>
-
-                                    <td th:if="${libro.getEditorial()}">
-                                        <div th:each="editorial : ${editoriales}">
-                                            <div th:if="${libro.getEditorial()}==${editorial.getIdEditorial()}">
-                                                <div th:text="${editorial.getNombreEditorial()}"></div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td th:unless="${libro.getEditorial()}">
-                                        <div th:text="'No especificado'"></div>
-                                    </td>
+                                    <td th:text="${libro.getEditorial() != null} ? ${libro.getEditorial().getNombreEditorial()} : 'No especificado' "></td>
 
                                     <td>
                                         <div class="btn-group">

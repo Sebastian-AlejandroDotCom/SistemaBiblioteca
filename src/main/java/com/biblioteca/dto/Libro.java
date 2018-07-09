@@ -3,10 +3,11 @@ package com.biblioteca.dto;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-public class Libro {
+public class Libro implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -18,7 +19,9 @@ public class Libro {
     private int precio;
     private Date año;
     private Date publicacion;
-    private Integer editorial;
+    @JoinColumn(name = "editorial", referencedColumnName = "idEditorial")
+    @ManyToOne
+    private Editorial editorial;
 
     public Integer getNumeroSerie() {
         return numeroSerie;
@@ -76,11 +79,12 @@ public class Libro {
         this.publicacion = publicacion;
     }
 
-    public Integer getEditorial() {
+    public Editorial getEditorial() {
         return editorial;
     }
 
-    public void setEditorial(Integer editorial) {
+    public void setEditorial(Editorial editorial) {
         this.editorial = editorial;
     }
+
 }
