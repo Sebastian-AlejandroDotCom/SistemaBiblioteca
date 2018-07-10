@@ -2,6 +2,7 @@ package com.biblioteca.service;
 
 import com.biblioteca.dao.AutorDAO;
 import com.biblioteca.dto.Autor;
+import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +19,11 @@ public class AutorService {
     }
 
     public Optional<Autor> buscarPorId(Integer id){
-        return this.autorDAO.findById(id);
+        try{
+            return this.autorDAO.findById(id);
+        }catch (ExceptionService e){
+            throw new ExceptionService(e.getMessage());
+        }
     }
 
     public void elminarPorId(Integer id){

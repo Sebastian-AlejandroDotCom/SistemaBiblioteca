@@ -33,7 +33,7 @@
                                 <form th:action="@{/categorias/registrar}" th:object="${categoria}" method="post">
                                     <div class="form-group">
                                         <label>Nombre Categoría</label>
-                                        <input class="form-control" th:field="*{nombreCategoria}" type="text">
+                                        <input class="form-control" th:field="*{nombreCategoria}" type="text" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="registrarCategoria">Registrar</button>
                                 </form>
